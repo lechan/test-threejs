@@ -3,7 +3,8 @@ import './App.scss'
 // import HelloPrimitives from '@/components/hello-primitives'
 // import HelloScene from '@/components/hello-scene'
 // import HelloTexture from './components/hello-texture'
-import HelloLight from './components/hello-light';
+// import HelloLight from './components/hello-light'
+import HelloCamera from './components/hello-camera'
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
     // <HelloPrimitives />
     // <HelloScene />
     // <HelloTexture />
-    <HelloLight />
+    // <HelloLight />
+    <HelloCamera />
   );
 }
 
