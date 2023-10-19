@@ -4,7 +4,9 @@ import './App.scss'
 // import HelloScene from '@/components/hello-scene'
 // import HelloTexture from './components/hello-texture'
 // import HelloLight from './components/hello-light'
-import HelloCamera from './components/hello-camera'
+// import HelloCamera from './components/hello-camera'
+// import HelloFakeShadow from './components/hello-fake-shadow'
+import HelloShadow from './components/hello-shadow'
 
 function App() {
   return (
@@ -13,7 +15,9 @@ function App() {
     // <HelloScene />
     // <HelloTexture />
     // <HelloLight />
-    <HelloCamera />
+    // <HelloCamera />
+    // <HelloFakeShadow />
+    <HelloShadow />
   );
 }
 

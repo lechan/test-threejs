@@ -13,7 +13,7 @@ const createScene: (type?: keyof typeof MaterialType) => Three.Scene = (
   const planeSize = 40;
 
   const loader = new Three.TextureLoader();
-  const texture = loader.load(require("@/assets/imgs/checker.png").default);
+  const texture = loader.load(require("@/assets/imgs/checker.png"));
   texture.wrapS = Three.RepeatWrapping;
   texture.wrapT = Three.RepeatWrapping;
   texture.magFilter = Three.NearestFilter;
