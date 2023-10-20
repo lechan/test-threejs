@@ -6,7 +6,11 @@ import './App.scss'
 // import HelloLight from './components/hello-light'
 // import HelloCamera from './components/hello-camera'
 // import HelloFakeShadow from './components/hello-fake-shadow'
-import HelloShadow from './components/hello-shadow'
+// import HelloShadow from './components/hello-shadow'
+// import HelloPointLightShadow from './components/hello-shadow/hello-point-light-shadow'
+// import HelloFog from './components/hello-fog'
+// import HelloRenderTarget from './components/hello-render-target'
+import HelloCustomGeometry from './components/hello-custom-geometry'
 
 function App() {
   return (
@@ -17,7 +21,11 @@ function App() {
     // <HelloLight />
     // <HelloCamera />
     // <HelloFakeShadow />
-    <HelloShadow />
+    // <HelloShadow />
+    // <HelloPointLightShadow />
+    // <HelloFog />
+    // <HelloRenderTarget />
+    <HelloCustomGeometry />
   );
 }
 

@@ -36,12 +36,12 @@ const HelloShadow = () => {
     controls.update();
 
     // const light = new Three.DirectionalLight(0xffffff, 1);
-    const light = new Three.SpotLight(0xFFFFFF, 1)
+    const light = new Three.PointLight(0xFFFFFF, 1)
     light.castShadow = true;
-    light.position.set(0, 15, 0);
-    light.target.position.set(-4, 0, -4);
+    light.position.set(0, 10, 0);
+    // light.target.position.set(-4, 0, -4);
     scene.add(light);
-    scene.add(light.target);
+    // scene.add(light.target);
 
     //添加半球环境光
     // const hemisphereLight = new Three.HemisphereLight(0xFFFFFF, 0x000000, 2)
@@ -55,8 +55,19 @@ const HelloShadow = () => {
     shadowCamera.updateProjectionMatrix();
 
     // const lightHelper = new Three.DirectionalLightHelper(light);
-    const lightHelper = new Three.SpotLightHelper(light)
+    const lightHelper = new Three.PointLightHelper(light)
     scene.add(lightHelper);
+
+    //新增 room 立方体
+    const roomMat = new Three.MeshPhongMaterial({
+      color:0xCCCCCC,
+      side:Three.BackSide //注意此处的设置
+    })
+    const roomGeo = new Three.BoxBufferGeometry(30,30,30)
+    const roomMesh = new Three.Mesh(roomGeo,roomMat)
+    roomMesh.receiveShadow = true //作为背景墙面，只需接收阴影，无需设置 投射阴影(castShadow)
+    roomMesh.position.set(0,14.9,0) //这个 y 值 14.9 是有玄机的，稍后解释
+    scene.add(roomMesh)
 
     const shadowHelper = new Three.CameraHelper(shadowCamera);
     scene.add(shadowHelper);
