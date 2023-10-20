@@ -1,4 +1,5 @@
 import './App.scss'
+
 // import HelloThreejs from '@/components/hello-threejs'
 // import HelloPrimitives from '@/components/hello-primitives'
 // import HelloScene from '@/components/hello-scene'
@@ -10,7 +11,8 @@ import './App.scss'
 // import HelloPointLightShadow from './components/hello-shadow/hello-point-light-shadow'
 // import HelloFog from './components/hello-fog'
 // import HelloRenderTarget from './components/hello-render-target'
-import HelloCustomGeometry from './components/hello-custom-geometry'
+// import HelloCustomGeometry from './components/hello-custom-geometry'
+import RenderingOnDemand from './components/rendering-on-demand'
 
 function App() {
   return (
@@ -25,7 +27,8 @@ function App() {
     // <HelloPointLightShadow />
     // <HelloFog />
     // <HelloRenderTarget />
-    <HelloCustomGeometry />
+    // <HelloCustomGeometry />
+    <RenderingOnDemand />
   );
 }
 

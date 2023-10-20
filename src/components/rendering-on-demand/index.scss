@@ -1,0 +1,18 @@
+.full-screen, canvas {
+  display: block;
+  height: inherit;
+  width: inherit;
+}
+
+.debug {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 80px;
+  padding: 20px;
+  background-color: rgba($color: #FFFFFF, $alpha: 0.7);
+}
+
+.debug span {
+  display: block;
+}
