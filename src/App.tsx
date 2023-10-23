@@ -13,7 +13,8 @@ import './App.scss'
 // import HelloCustomGeometry from './components/hello-custom-geometry'
 // import RenderingOnDemand from './components/rendering-on-demand'
 // import HelloCanvas from './components/hello-canvas';
-import PreserveDrawingBuffer from './components/hello-canvas/preserve-drawing-buffer'
+// import PreserveDrawingBuffer from './components/hello-canvas/preserve-drawing-buffer'
+import HelloEarth from './components/hello-earth';
 
 function App() {
   return (
@@ -31,7 +32,8 @@ function App() {
     // <HelloCustomGeometry />
     // <RenderingOnDemand />
     // <HelloCanvas />
-    <PreserveDrawingBuffer />
+    // <PreserveDrawingBuffer />
+    <HelloEarth />
   );
 }
 

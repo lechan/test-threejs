@@ -47,6 +47,7 @@
   "devDependencies": {
     "node-sass": "^7.0.3",
     "react-app-rewire-alias": "^1.1.7",
-    "react-app-rewired": "^2.2.1"
+    "react-app-rewired": "^2.2.1",
+    "worker-loader": "^3.0.8"
   }
 }
