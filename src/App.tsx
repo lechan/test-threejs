@@ -16,7 +16,8 @@ import './App.scss'
 // import PreserveDrawingBuffer from './components/hello-canvas/preserve-drawing-buffer'
 // import HelloEarth from './components/hello-earth'
 // import HelloOffscreenCanvas from './components/hello-offscreen-canvas'
-import HelloOBJLoader from './components/hello-objloader'
+// import HelloOBJLoader from './components/hello-objloader'
+import HelloGltfLoader from './components/hello-gltfloader';
 
 function App() {
   return (
@@ -37,7 +38,8 @@ function App() {
     // <PreserveDrawingBuffer />
     // <HelloEarth />
     // <HelloOffscreenCanvas />
-    <HelloOBJLoader />
+    // <HelloOBJLoader />
+    <HelloGltfLoader />
   );
 }
 
