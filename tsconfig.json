@@ -5,6 +5,8 @@
     "lib": [
       "dom",
       "dom.iterable",
+      "WebWorker",
+      "WebWorker.ImportScripts",
       "esnext"
     ],
     "allowJs": true,

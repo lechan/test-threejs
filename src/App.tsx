@@ -14,7 +14,8 @@ import './App.scss'
 // import RenderingOnDemand from './components/rendering-on-demand'
 // import HelloCanvas from './components/hello-canvas';
 // import PreserveDrawingBuffer from './components/hello-canvas/preserve-drawing-buffer'
-import HelloEarth from './components/hello-earth';
+// import HelloEarth from './components/hello-earth'
+import HelloOffscreenCanvas from './components/hello-offscreen-canvas'
 
 function App() {
   return (
@@ -33,7 +34,8 @@ function App() {
     // <RenderingOnDemand />
     // <HelloCanvas />
     // <PreserveDrawingBuffer />
-    <HelloEarth />
+    // <HelloEarth />
+    <HelloOffscreenCanvas />
   );
 }
 
