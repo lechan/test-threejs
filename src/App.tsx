@@ -17,7 +17,8 @@ import './App.scss'
 // import HelloEarth from './components/hello-earth'
 // import HelloOffscreenCanvas from './components/hello-offscreen-canvas'
 // import HelloOBJLoader from './components/hello-objloader'
-import HelloGltfLoader from './components/hello-gltfloader';
+// import HelloGltfLoader from './components/hello-gltfloader'
+import HelloSkybox from './components/hello-skybox'
 
 function App() {
   return (
@@ -39,7 +40,8 @@ function App() {
     // <HelloEarth />
     // <HelloOffscreenCanvas />
     // <HelloOBJLoader />
-    <HelloGltfLoader />
+    // <HelloGltfLoader />
+    <HelloSkybox />
   );
 }
 
