@@ -14,11 +14,11 @@ import './App.scss'
 // import RenderingOnDemand from './components/rendering-on-demand'
 // import HelloCanvas from './components/hello-canvas';
 // import PreserveDrawingBuffer from './components/hello-canvas/preserve-drawing-buffer'
-// import HelloEarth from './components/hello-earth'
+import HelloEarth from './components/hello-earth'
 // import HelloOffscreenCanvas from './components/hello-offscreen-canvas'
 // import HelloOBJLoader from './components/hello-objloader'
 // import HelloGltfLoader from './components/hello-gltfloader'
-import HelloSkybox from './components/hello-skybox'
+// import HelloSkybox from './components/hello-skybox'
 
 function App() {
   return (
@@ -37,11 +37,11 @@ function App() {
     // <RenderingOnDemand />
     // <HelloCanvas />
     // <PreserveDrawingBuffer />
-    // <HelloEarth />
+    <HelloEarth />
     // <HelloOffscreenCanvas />
     // <HelloOBJLoader />
     // <HelloGltfLoader />
-    <HelloSkybox />
+    // <HelloSkybox />
   );
 }
 

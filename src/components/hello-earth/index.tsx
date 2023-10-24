@@ -112,7 +112,8 @@ const HelloEarth = () => {
     const color = new Three.Color();
     ascData.data.forEach((row, latIndex) => {
       row.forEach((value, lonIndex) => {
-        if (value === undefined) {
+        // 地区数据没有或者小于1w人的不展示柱体
+        if (value === undefined || value < 10000) {
           return;
         }
         const amount = (value - ascData.min) / range;
@@ -187,14 +188,19 @@ const HelloEarth = () => {
 
     const canvas = canvasRef.current;
     const renderer = new Three.WebGLRenderer({ canvas });
-    const camera = new Three.PerspectiveCamera(45, 2, 0.1, 100);
+    const camera = new Three.PerspectiveCamera(35, 2, 0.1, 100);
     camera.position.z = 4;
+    camera.position.y = 3;
     const scene = new Three.Scene();
     scene.background = new Three.Color(0x000000);
 
     const controls = new OrbitControls(camera, canvas);
     controls.enableDamping = true;
     controls.enablePan = false;
+    // 启用自动旋转
+    controls.autoRotate = true;
+    // 设置自动旋转速度
+    controls.autoRotateSpeed = 2.0;
     controls.update();
 
     const render = () => {
@@ -211,14 +217,84 @@ const HelloEarth = () => {
     };
     controls.addEventListener("change", handleChange);
 
+    const Shaders = {
+      'earth' : {
+        uniforms: {
+          'texture': { value: null }
+        },
+        vertexShader: [
+          'varying vec3 vNormal;',
+          'varying vec2 vUv;',
+          'void main() {',
+            'gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );',
+            'vNormal = normalize( normalMatrix * normal );',
+            'vUv = uv;',
+          '}'
+        ].join('\n'),
+        fragmentShader: [
+          'uniform sampler2D texture;',
+          'varying vec3 vNormal;',
+          'varying vec2 vUv;',
+          'void main() {',
+            'vec3 diffuse = texture2D( texture, vUv ).xyz;',
+            'float intensity = 1.05 - dot( vNormal, vec3( 0.0, 0.0, 1.0 ) );',
+            'vec3 atmosphere = vec3( 1.0, 1.0, 1.0 ) * pow( intensity, 3.0 );',
+            'gl_FragColor = vec4( diffuse + atmosphere, 1.0 );',
+          '}'
+        ].join('\n')
+      },
+      'atmosphere' : {
+        uniforms: {},
+        vertexShader: [
+          'varying vec3 vNormal;',
+          'void main() {',
+            'vNormal = normalize( normalMatrix * normal );',
+            'gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );',
+          '}'
+        ].join('\n'),
+        fragmentShader: [
+          'varying vec3 vNormal;',
+          'void main() {',
+            'float intensity = pow( 0.8 - dot( vNormal, vec3( 0, 0, 1.2 ) ), 12.0 );',
+            'gl_FragColor = vec4( 1.0, 1.0, 1.0, 1.0 ) * intensity;',
+          '}'
+        ].join('\n')
+      }
+    };
+    // const shader = Shaders['earth'];
+    // const uniforms = Three.UniformsUtils.clone(shader.uniforms);
+    // const loader = new Three.TextureLoader();
+    // const texture = loader.load("@/assets/imgs/earth_atmos_2048.jpg");
+    // uniforms['texture'].value = texture
+    // const material = new Three.ShaderMaterial({
+    //   uniforms: uniforms,
+    //   vertexShader: shader.vertexShader,
+    //   fragmentShader: shader.fragmentShader
+    // });
+    const geometry = new Three.SphereBufferGeometry(1, 64, 32);
     const loader = new Three.TextureLoader();
     const texture = loader.load(require("@/assets/imgs/earth_atmos_2048.jpg"), render);
     const material = new Three.MeshBasicMaterial({
       map: texture,
     });
-    const geometry = new Three.SphereBufferGeometry(1, 64, 32);
     const earth = new Three.Mesh(geometry, material);
     scene.add(earth);
+
+    // 大气效果
+    const meshShader = Shaders['atmosphere'];
+    const meshUniforms = Three.UniformsUtils.clone(meshShader.uniforms);
+    const meshMaterial = new Three.ShaderMaterial({
+      uniforms: meshUniforms,
+      vertexShader: meshShader.vertexShader,
+      fragmentShader: meshShader.fragmentShader,
+      side: Three.BackSide,
+      blending: Three.AdditiveBlending,
+      transparent: true
+    });
+
+    const mesh = new Three.Mesh(geometry, meshMaterial);
+    mesh.scale.set( 1.1, 1.1, 1.1 );
+    scene.add(mesh);
 
     const handleResize = () => {
       const width = canvas.clientWidth;
@@ -226,7 +302,6 @@ const HelloEarth = () => {
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
       renderer.setSize(width, height, false);
-
       window.requestAnimationFrame(render);
     };
     setTimeout(() => {
